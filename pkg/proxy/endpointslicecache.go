@@ -144,6 +144,7 @@ func (cache *EndpointSliceCache) checkoutChanges() map[types.NamespacedName]*end
 		for name, sliceData := range esTracker.pending {
 			if sliceData.remove {
 				delete(esTracker.applied, name)
+				delete(cache.trackerByServiceMap, serviceNN)
 			} else {
 				esTracker.applied[name] = sliceData
 			}
